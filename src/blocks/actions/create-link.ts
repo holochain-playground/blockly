@@ -1,3 +1,5 @@
+import { ENTRY_HASH, PUB_KEY } from '../types';
+
 export const createLink = {
   type: 'create_link',
   message0: 'create_link base %1 target %2 tag %3',
@@ -5,13 +7,13 @@ export const createLink = {
     {
       type: 'input_value',
       name: 'BASE',
-      check: 'EntryHash',
+      check: [ENTRY_HASH, PUB_KEY],
       align: 'right',
     },
     {
       type: 'input_value',
       name: 'TARGET',
-      check: 'EntryHash',
+      check: [ENTRY_HASH, PUB_KEY],
       align: 'right',
     },
     {

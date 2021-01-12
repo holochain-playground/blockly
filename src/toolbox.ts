@@ -3,26 +3,46 @@ export const toolbox = {
   contents: [
     {
       kind: 'category',
-      name: 'HDK Actions',
-      contents: [
-        {
-          kind: 'block',
-          type: 'create_entry',
-        },
-        {
-          kind: 'block',
-          type: 'hash_entry',
-        },
-        {
-          kind: 'block',
-          type: 'create_link',
-        },
-      ],
+      name: 'Entries',
+      contents: [{ kind: 'block', type: 'new_entry' }],
     },
     {
       kind: 'category',
-      name: 'HDK Callbacks',
-      contents: [],
+      name: 'HDK',
+      contents: [
+        {
+          kind: 'category',
+          name: 'Actions',
+          contents: [
+            {
+              kind: 'block',
+              type: 'get',
+            },
+            {
+              kind: 'block',
+              type: 'create_entry',
+            },
+            {
+              kind: 'block',
+              type: 'hash_entry',
+            },
+            {
+              kind: 'block',
+              type: 'create_link',
+            },
+          ],
+        },
+        {
+          kind: 'category',
+          name: 'Callbacks',
+          contents: [],
+        },
+        {
+          kind: 'category',
+          name: 'Information',
+          contents: [],
+        },
+      ],
     },
     {
       kind: 'category',
@@ -59,6 +79,16 @@ export const toolbox = {
           type: 'logic_boolean',
         },
       ],
+    },
+    {
+      kind: 'category',
+      name: 'Variables',
+      custom: 'VARIABLE',
+    },
+    {
+      kind: 'category',
+      name: 'Functions',
+      custom: 'PROCEDURE',
     },
   ],
 };

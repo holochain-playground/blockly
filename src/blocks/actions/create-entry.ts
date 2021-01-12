@@ -1,3 +1,5 @@
+import { ENTRY } from '../types';
+
 export const createEntry = {
   type: 'create_entry',
   message0: 'create_entry %1',
@@ -5,7 +7,7 @@ export const createEntry = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'Entry',
+      check: ENTRY,
     },
   ],
   inputsInline: true,
