@@ -16,6 +16,7 @@
     "storybook:build": "tsc && build-storybook"
   },
   "dependencies": {
+    "@holochain-playground/core": "git+https://github.com/holochain-playground/core.git#build",
     "blockly": "git+https://github.com/guillemcordoba/blockly.git#build",
     "lit-element": "^2.2.1",
     "lit-html": "^1.1.2"

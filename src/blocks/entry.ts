@@ -1,6 +1,6 @@
 import { ENTRY } from './types';
 
-export const entry = {
+const entry = {
   type: 'new_entry',
   message0: 'new entry %1',
   args0: [
@@ -16,3 +16,17 @@ export const entry = {
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
 };
+
+export function defineEntry(blockly: any) {
+  blockly.defineBlocksWithJsonArray([entry]);
+  blockly.JavaScript['new_entry'] = function (block: any) {
+    const content =
+      blockly.JavaScript.valueToCode(
+        block,
+        'CONTENT',
+        blockly.JavaScript.ORDER_ADDITION
+      ) || '0';
+
+    return [`"${content}"`, blockly.JavaScript.ORDER_FUNCTION_CALL];
+  };
+}

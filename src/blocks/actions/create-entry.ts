@@ -6,7 +6,7 @@ export const createEntry = {
   args0: [
     {
       type: 'input_value',
-      name: 'VALUE',
+      name: 'ENTRY',
       check: ENTRY,
     },
   ],
@@ -17,3 +17,17 @@ export const createEntry = {
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
 };
+
+export function defineCreateEntry(blockly: any) {
+  blockly.defineBlocksWithJsonArray([createEntry]);
+  blockly.JavaScript['create_entry'] = function (block: any) {
+    const entry =
+      blockly.JavaScript.valueToCode(
+        block,
+        'ENTRY',
+        blockly.JavaScript.ORDER_ADDITION
+      ) || '0';
+
+    return `create_entry(${entry}, 'sample')`;
+  };
+}

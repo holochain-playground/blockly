@@ -32,7 +32,7 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
       'root.Blockly = factory()': ''
     }),
     commonjs({
-      include: ['node_modules/blockly/**/*']
+      include: ['node_modules/blockly/**/*', 'node_modules/blakejs/**/*']
     })
     /** Use Hot Module Replacement by uncommenting. Requires @open-wc/dev-server-hmr plugin */
     // hmr && hmrPlugin({ exclude: ['**/*/node_modules/**/*'], presets: [presets.litElement] }),

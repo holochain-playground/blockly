@@ -1,3 +1,5 @@
+import { ENTRY, ENTRY_HASH } from "../types";
+
 export const hashEntry = {
   type: 'hash_entry',
   message0: 'hash_entry %1',
@@ -5,11 +7,11 @@ export const hashEntry = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'Entry',
+      check: ENTRY,
     },
   ],
   inputsInline: true,
-  output: 'Hash',
+  output: ENTRY_HASH,
   colour: 160,
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
