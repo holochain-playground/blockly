@@ -9,13 +9,11 @@ function esm(templateStrings: any, ...substitutions: any) {
 }
 
 export async function importZomeFromCode(code: string) {
-  console.log(code);
   const text = code.replace(
     /function (\w*)\(([A-Za-z0-9_,]*)\) \{/,
     'export const $1 = ({create_entry}) => ($2) => {'
   );
 
-  console.log(text);
   // prettier-ignore
   const module = await import(esm`${text}`);
 

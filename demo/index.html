@@ -16,15 +16,22 @@
     </style>
   </head>
   <body>
-    <holochain-playground-blockly id="demo"></holochain-playground-blockly>
+    <holochain-playground-container>
+      <holochain-playground-edit-dna id="demo"></holochain-playground-edit-dna>
+    </holochain-playground-container>
 
     <script type="module">
       import { html, render } from 'lit-html';
-      import { HolochainPlaygroundBlockly } from '../dist';
+      import { HolochainPlaygroundContainer } from '@holochain-playground/container';
+      import { HolochainPlaygroundEditDna } from '../dist';
 
       customElements.define(
-        'holochain-playground-blockly',
-        HolochainPlaygroundBlockly
+        'holochain-playground-container',
+        HolochainPlaygroundContainer
+      );
+      customElements.define(
+        'holochain-playground-edit-dna',
+        HolochainPlaygroundEditDna
       );
     </script>
   </body>
