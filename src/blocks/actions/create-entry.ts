@@ -28,6 +28,6 @@ export function defineCreateEntry(blockly: any) {
         blockly.JavaScript.ORDER_ADDITION
       ) || '0';
 
-    return `create_entry(${entry}, 'sample')`;
+    return `create_entry({content: ${entry}, entry_def_id: 'sample'});`;
   };
 }

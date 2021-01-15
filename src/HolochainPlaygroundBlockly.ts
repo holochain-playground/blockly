@@ -28,10 +28,10 @@ export class HolochainPlaygroundBlockly extends LitElement {
       shadowRoot: this.shadowRoot,
     } as any);
 
-    workspace.addChangeListener(() => {
+    workspace.addChangeListener(async () => {
       const code = (Blockly as any).JavaScript.workspaceToCode(workspace);
       console.log(code);
-      const dna = buildDna(code);
+      const dna = await buildDna(code);
       execute(dna, 'sample', 'sample', {});
     });
   }

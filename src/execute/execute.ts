@@ -21,4 +21,5 @@ export async function execute(
     payload,
   });
   console.log(result);
+  console.log(conductors[0].cells[0].cell.getState().sourceChain);
 }
