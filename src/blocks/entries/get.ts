@@ -1,4 +1,4 @@
-import { ENTRY_HASH, HEADER_HASH, PUB_KEY } from '../types';
+import { ELEMENT, ENTRY_HASH, HEADER_HASH, PUB_KEY } from '../types';
 
 export const get = {
   type: 'get',
@@ -11,7 +11,7 @@ export const get = {
     },
   ],
   inputsInline: true,
-  output: 'Element',
+  output: ELEMENT,
   colour: 160,
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',

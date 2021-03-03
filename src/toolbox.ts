@@ -12,11 +12,15 @@ export const toolbox = {
       contents: [
         {
           kind: 'category',
-          name: 'Actions',
+          name: 'Entries',
           contents: [
             {
               kind: 'block',
               type: 'get',
+            },
+            {
+              kind: 'block',
+              type: 'get_details',
             },
             {
               kind: 'block',
@@ -26,16 +30,21 @@ export const toolbox = {
               kind: 'block',
               type: 'hash_entry',
             },
+          ],
+        },
+        {
+          kind: 'category',
+          name: 'Links',
+          contents: [
+            {
+              kind: 'block',
+              type: 'get_links',
+            },
             {
               kind: 'block',
               type: 'create_link',
             },
           ],
-        },
-        {
-          kind: 'category',
-          name: 'Callbacks',
-          contents: [],
         },
         {
           kind: 'category',
@@ -65,6 +74,10 @@ export const toolbox = {
           kind: 'block',
           type: 'controls_for',
         },
+        {
+          kind: 'block',
+          type: 'controls_forEach',
+        },
       ],
     },
     {
@@ -82,6 +95,32 @@ export const toolbox = {
         {
           kind: 'block',
           type: 'logic_boolean',
+        },
+      ],
+    },
+    {
+      kind: 'category',
+      name: 'List',
+      contents: [
+        {
+          kind: 'block',
+          type: 'lists_length',
+        },
+        {
+          kind: 'block',
+          type: 'lists_isEmpty',
+        },
+        {
+          kind: 'block',
+          type: 'lists_getIndex',
+        },
+        {
+          kind: 'block',
+          type: 'lists_setIndex',
+        },
+        {
+          kind: 'block',
+          type: 'lists_sort',
         },
       ],
     },

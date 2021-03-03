@@ -1,9 +1,11 @@
-import { defineCreateEntry } from './actions/create-entry';
-import { defineCreateLink } from './actions/create-link';
-import { defineGet } from './actions/get';
-import { defineHashEntry } from './actions/hash-entry';
+import { defineCreateEntry } from './entries/create_entry';
+import { defineCreateLink } from './links/create_link';
+import { defineGet } from './entries/get';
+import { defineHashEntry } from './entries/hash_entry';
 import { defineEntry } from './entry';
-import { defineAgentInfo } from './info/agent-info';
+import { defineAgentInfo } from './info/agent_info';
+import { defineGetDetails } from './entries/get_details';
+import { defineGetLinks } from './links/get_links';
 
 export function defineBlocks(blockly: any) {
   defineCreateEntry(blockly);
@@ -12,4 +14,6 @@ export function defineBlocks(blockly: any) {
   defineHashEntry(blockly);
   defineGet(blockly);
   defineAgentInfo(blockly);
+  defineGetDetails(blockly);
+  defineGetLinks(blockly);
 }
