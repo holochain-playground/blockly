@@ -20,14 +20,15 @@ export const createEntry = {
 
 export function defineCreateEntry(blockly: any) {
   blockly.defineBlocksWithJsonArray([createEntry]);
-  blockly.JavaScript['create_entry'] = function (block: any) {
-    const entry =
-      blockly.JavaScript.valueToCode(
-        block,
-        'ENTRY',
-        blockly.JavaScript.ORDER_ADDITION
-      ) || '0';
+  blockly.JavaScript.create_entry = function (block: any) {
+    const entry = blockly.JavaScript.valueToCode(
+      block,
+      'ENTRY',
+      blockly.JavaScript.ORDER_ADDITION
+    );
 
-    return `create_entry({content: ${entry}, entry_def_id: 'sample'});`;
+    if (!entry) throw new Error(`"create_entry": entry is empty`);
+
+    return `(await hdk.create_entry({content: ${entry}, entry_def_id: 'sample'}));\n`;
   };
 }

@@ -1,2 +1,2 @@
-export { HolochainPlaygroundEditZome } from './elements/holochain-playground-edit-zome';
-export { HolochainPlaygroundEditDna } from './elements/holochain-playground-edit-dna';
+export { EditZome } from './elements/edit-zome';
+export { EditDna } from './elements/edit-dna';

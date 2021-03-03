@@ -16,23 +16,31 @@
     </style>
   </head>
   <body>
-    <holochain-playground-container>
-      <holochain-playground-edit-dna id="demo"></holochain-playground-edit-dna>
+    <holochain-playground-container id="container">
+      <div style="display: flex; flex: 1; flex-direction: column;">
+        <edit-dna id="demo"></edit-dna>
+        <call-zome-fns style="height: 200px;"></call-zome-fns>
+        <entry-graph style="height: 200px;"></entry-graph>
+      </div>
     </holochain-playground-container>
 
     <script type="module">
-      import { html, render } from 'lit-html';
-      import { HolochainPlaygroundContainer } from '@holochain-playground/container';
-      import { HolochainPlaygroundEditDna } from '../dist';
+      import { HolochainPlaygroundContainer, CallZomeFns, EntryGraph } from '@holochain-playground/elements';
+      import { EditDna } from '../dist';
 
       customElements.define(
         'holochain-playground-container',
         HolochainPlaygroundContainer
       );
-      customElements.define(
-        'holochain-playground-edit-dna',
-        HolochainPlaygroundEditDna
-      );
+      customElements.define('edit-dna', EditDna);
+      customElements.define('call-zome-fns', CallZomeFns);
+      customElements.define('entry-graph', EntryGraph);
+
+      document.getElementById('container').addEventListener('ready', e => {
+        const conductor = e.detail.conductors[0];
+        const cell = conductor.getAllCells()[0];
+        e.target.activeAgentPubKey = cell.cellId[1];
+      })
     </script>
   </body>
 </html>

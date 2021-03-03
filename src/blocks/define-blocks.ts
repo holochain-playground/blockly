@@ -1,12 +1,15 @@
-import { createEntry, defineCreateEntry } from './actions/create-entry';
-import { createLink } from './actions/create-link';
-import { get } from './actions/get';
-import { hashEntry } from './actions/hash-entry';
+import { defineCreateEntry } from './actions/create-entry';
+import { defineCreateLink } from './actions/create-link';
+import { defineGet } from './actions/get';
+import { defineHashEntry } from './actions/hash-entry';
 import { defineEntry } from './entry';
+import { defineAgentInfo } from './info/agent-info';
 
 export function defineBlocks(blockly: any) {
-  blockly.defineBlocksWithJsonArray([hashEntry, createLink, get]);
-
   defineCreateEntry(blockly);
   defineEntry(blockly);
+  defineCreateLink(blockly);
+  defineHashEntry(blockly);
+  defineGet(blockly);
+  defineAgentInfo(blockly);
 }

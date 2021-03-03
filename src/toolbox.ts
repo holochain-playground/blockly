@@ -40,7 +40,12 @@ export const toolbox = {
         {
           kind: 'category',
           name: 'Information',
-          contents: [],
+          contents: [
+            {
+              kind: 'block',
+              type: 'agent_info.agent_latest_pubkey',
+            },
+          ],
         },
       ],
     },

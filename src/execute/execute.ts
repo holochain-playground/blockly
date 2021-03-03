@@ -11,7 +11,7 @@ export async function execute(
 ) {
   const conductors = await createConductors(1, [], dna);
 
-  const cellId = conductors[0].cells[0].id;
+  const { cellId } = conductors[0].getAllCells()[0];
 
   const result = await conductors[0].callZomeFn({
     cellId,

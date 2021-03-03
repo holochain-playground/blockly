@@ -19,13 +19,8 @@ const entry = {
 
 export function defineEntry(blockly: any) {
   blockly.defineBlocksWithJsonArray([entry]);
-  blockly.JavaScript['new_entry'] = function (block: any) {
-    const content =
-      blockly.JavaScript.valueToCode(
-        block,
-        'CONTENT',
-        blockly.JavaScript.ORDER_ADDITION
-      ) || '0';
+  blockly.JavaScript.new_entry = function (block: any) {
+    const content = block.getFieldValue('CONTENT');
 
     return [`"${content}"`, blockly.JavaScript.ORDER_FUNCTION_CALL];
   };
