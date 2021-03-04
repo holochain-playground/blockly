@@ -43,7 +43,6 @@ export class DnaCode extends PlaygroundElement {
     css`
       :host {
         display: flex;
-        flex: 1;
       }
     `,
     sharedStyles,
