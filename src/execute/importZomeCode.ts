@@ -1,4 +1,5 @@
 import { Dictionary } from '@holochain-open-dev/core-types';
+import { SimulatedZomeFunction } from '@holochain-playground/core';
 
 function esm(templateStrings: any, ...substitutions: any) {
   let js = templateStrings.raw[0];
@@ -11,21 +12,30 @@ function esm(templateStrings: any, ...substitutions: any) {
 }
 
 export async function importZomeFromCode(code: string) {
+  // eslint-ignore-line
+  const functionsRegex = /function (\w*)\(([A-Za-z0-9_,\ ]*)\) \{/;
   const text = code.replace(
-    /function (\w*)\(([A-Za-z0-9_,]*)\) \{/,
+    functionsRegex,
     'export const $1 = (hdk) => async ($2) => {'
   );
-  console.log(text);
+  const functionArgs = code.split(functionsRegex);
+
   // prettier-ignore
   const module = await import(esm`${text}`);
 
   const zomeFns: Dictionary<any> = { ...module };
 
   for (const fnName of Object.keys(zomeFns)) {
-    zomeFns[fnName] = {
-      arguments: [],
+    const argumentsIndex = functionArgs.findIndex(fn => fn === fnName) + 1;
+    const fnArguments = functionArgs[argumentsIndex].split(', ').map(arg => ({
+      name: arg,
+      type: 'any',
+    }));
+    zomeFns[fnName] = <SimulatedZomeFunction>{
+      arguments: fnArguments,
       call: zomeFns[fnName],
     };
   }
+  console.log(zomeFns);
   return zomeFns;
 }
