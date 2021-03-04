@@ -1,0 +1,1 @@
+{"version":3,"file":"validation.js","sourceRoot":"","sources":["../src/validation.ts"],"names":[],"mappings":"AAAA,MAAM,CAAN,IAAY,gBAIX;AAJD,WAAY,gBAAgB;IAC1B,yDAAK,CAAA;IACL,+DAAQ,CAAA;IACR,iEAAS,CAAA;AACX,CAAC,EAJW,gBAAgB,KAAhB,gBAAgB,QAI3B","sourcesContent":["export enum ValidationStatus {\n  Valid,\n  Rejected,\n  Abandoned,\n}\n"]}
