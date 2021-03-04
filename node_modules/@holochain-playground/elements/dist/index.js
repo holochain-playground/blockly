@@ -811,8 +811,6 @@ class JsonViewer extends HTMLElement {
   }
 }
 
-customElements.define(JsonViewer.is, JsonViewer);
-
 class ExpandableLine extends ScopedElementsMixin(LitElement) {
     constructor() {
         super(...arguments);
