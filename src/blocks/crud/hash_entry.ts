@@ -1,4 +1,4 @@
-import { ENTRY, ENTRY_HASH } from '../types';
+import { ENTRY, ENTRY_HASH, colour } from '../types';
 
 export const hashEntry = {
   type: 'hash_entry',
@@ -12,7 +12,7 @@ export const hashEntry = {
   ],
   inputsInline: true,
   output: ENTRY_HASH,
-  colour: 160,
+  colour,
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
 };
@@ -29,7 +29,7 @@ export function defineHashEntry(blockly: any) {
     if (!entry) throw new Error(`"hash_entry": entry is empty`);
 
     return [
-      `(await hdk.hash_entry({content: ${entry}}))`,
+      `(await hdk.hash_entry(${entry}))`,
       blockly.JavaScript.ORDER_FUNCTION_CALL,
     ];
   };

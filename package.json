@@ -1,5 +1,5 @@
 {
-  "name": "holochain-playground-blockly",
+  "name": "@holochain-playground/blockly",
   "version": "0.0.0",
   "description": "Webcomponent holochain-playground-blockly following open-wc recommendations",
   "author": "holochain-playground-blockly",
@@ -23,7 +23,7 @@
     "blockly": "git+https://github.com/guillemcordoba/blockly.git#build",
     "lit-element": "^2.2.1",
     "lit-html": "^1.1.2",
-    "scoped-material-components": "0.1.1"
+    "scoped-material-components": "0.1.2"
   },
   "devDependencies": {
     "@open-wc/eslint-config": "^4.2.0",

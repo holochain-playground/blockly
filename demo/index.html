@@ -18,7 +18,7 @@
   <body>
     <holochain-playground-container id="container">
       <div style="display: flex; flex: 1; flex-direction: column;">
-        <edit-dna id="demo"></edit-dna>
+        <dna-code id="demo"></dna-code>
         <call-zome-fns style="height: 200px;"></call-zome-fns>
         <entry-graph style="height: 200px;"></entry-graph>
       </div>
@@ -26,13 +26,13 @@
 
     <script type="module">
       import { HolochainPlaygroundContainer, CallZomeFns, EntryGraph } from '@holochain-playground/elements';
-      import { EditDna } from '../dist';
+      import { DnaCode } from '../dist';
 
       customElements.define(
         'holochain-playground-container',
         HolochainPlaygroundContainer
       );
-      customElements.define('edit-dna', EditDna);
+      customElements.define('dna-code', DnaCode);
       customElements.define('call-zome-fns', CallZomeFns);
       customElements.define('entry-graph', EntryGraph);
 

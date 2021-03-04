@@ -7,19 +7,15 @@ export async function buildZome(
   zomeName: string
 ): Promise<SimulatedZome> {
   const code = blockly.JavaScript.workspaceToCode(blocklyWorkspace);
-  const zome_functions = await importZomeFromCode(code);
+  const { zome_functions, entry_defs } = await importZomeFromCode(code);
 
   const blocklyCode = blockly.Xml.domToText(
     blockly.Xml.workspaceToDom(blocklyWorkspace)
   );
+  console.log(blocklyCode);
   return {
     name: zomeName,
-    entry_defs: [
-      {
-        id: 'sample',
-        visibility: 'Public',
-      },
-    ],
+    entry_defs,
     zome_functions,
     blocklyCode,
   };

@@ -1,5 +1,8 @@
 import { Dictionary } from '@holochain-open-dev/core-types';
-import { SimulatedZomeFunction } from '@holochain-playground/core';
+import {
+  SimulatedZomeFunction,
+  SimulatedZomeFunctionArgument,
+} from '@holochain-playground/core';
 
 function esm(templateStrings: any, ...substitutions: any) {
   let js = templateStrings.raw[0];
@@ -19,23 +22,35 @@ export async function importZomeFromCode(code: string) {
     'export const $1 = (hdk) => async ($2) => {'
   );
   const functionArgs = code.split(functionsRegex);
+  console.log(code, text);
 
   // prettier-ignore
   const module = await import(esm`${text}`);
 
-  const zomeFns: Dictionary<any> = { ...module };
+  const entry_defs: Array<any> = module.entry_defs;
 
-  for (const fnName of Object.keys(zomeFns)) {
+  if (!entry_defs)
+    throw new Error('There are no entry_defs defined in this zome');
+  if (entry_defs.some(def => def === null))
+    throw new Error('There are null entry defs');
+
+  const zome_functions: Dictionary<SimulatedZomeFunction> = {};
+
+  for (const fnName of Object.keys(module).filter(
+    key => key !== 'entry_defs'
+  )) {
     const argumentsIndex = functionArgs.findIndex(fn => fn === fnName) + 1;
-    const fnArguments = functionArgs[argumentsIndex].split(', ').map(arg => ({
-      name: arg,
-      type: 'any',
-    }));
-    zomeFns[fnName] = <SimulatedZomeFunction>{
+    let fnArguments: SimulatedZomeFunctionArgument[] = [];
+    if (functionArgs[argumentsIndex] !== '') {
+      fnArguments = functionArgs[argumentsIndex].split(', ').map(arg => ({
+        name: arg,
+        type: 'any',
+      }));
+    }
+    zome_functions[fnName] = {
       arguments: fnArguments,
-      call: zomeFns[fnName],
+      call: module[fnName],
     };
   }
-  console.log(zomeFns);
-  return zomeFns;
+  return { zome_functions, entry_defs };
 }

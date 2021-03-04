@@ -1,4 +1,4 @@
-import { ENTRY_HASH, PUB_KEY } from '../types';
+import { ENTRY_HASH, PUB_KEY, colour } from '../types';
 
 export const createLink = {
   type: 'create_link',
@@ -24,7 +24,7 @@ export const createLink = {
   ],
   nextStatement: null,
   previousStatement: null,
-  colour: 160,
+  colour,
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
 };

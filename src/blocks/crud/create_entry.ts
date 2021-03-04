@@ -1,4 +1,4 @@
-import { ENTRY } from '../types';
+import { ENTRY, colour } from '../types';
 
 export const createEntry = {
   type: 'create_entry',
@@ -13,7 +13,7 @@ export const createEntry = {
   inputsInline: true,
   nextStatement: null,
   previousStatement: null,
-  colour: 160,
+  colour,
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
 };
@@ -29,6 +29,6 @@ export function defineCreateEntry(blockly: any) {
 
     if (!entry) throw new Error(`"create_entry": entry is empty`);
 
-    return `(await hdk.create_entry({content: ${entry}, entry_def_id: 'sample'}));\n`;
+    return `(await hdk.create_entry(${entry}));\n`;
   };
 }

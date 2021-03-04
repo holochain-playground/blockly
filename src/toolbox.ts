@@ -3,16 +3,16 @@ export const toolbox = {
   contents: [
     {
       kind: 'category',
-      name: 'Entries',
-      contents: [{ kind: 'block', type: 'new_entry' }],
-    },
-    {
-      kind: 'category',
       name: 'HDK',
       contents: [
         {
           kind: 'category',
           name: 'Entries',
+          contents: [],
+        },
+        {
+          kind: 'category',
+          name: 'CRUD',
           contents: [
             {
               kind: 'block',
@@ -53,6 +53,20 @@ export const toolbox = {
             {
               kind: 'block',
               type: 'agent_info.agent_latest_pubkey',
+            },
+          ],
+        },
+        {
+          kind: 'category',
+          name: 'Callbacks',
+          contents: [
+            {
+              kind: 'block',
+              type: 'entry_defs',
+            },
+            {
+              kind: 'block',
+              type: 'entry_def',
             },
           ],
         },

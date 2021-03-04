@@ -13,4 +13,12 @@ export const sharedStyles = css`
     align-items: center;
     justify-content: center;
   }
+
+  .vertical-divider {
+    background-color: grey;
+    width: 1px;
+    height: 60%;
+    opacity: 0.3;
+    margin-bottom: 0;
+  }
 `;

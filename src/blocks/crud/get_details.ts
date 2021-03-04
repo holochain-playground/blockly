@@ -1,4 +1,4 @@
-import { ENTRY_HASH, PUB_KEY } from '../types';
+import { ENTRY_HASH, PUB_KEY, colour } from '../types';
 
 export const getDetails = {
   type: 'get_details',
@@ -12,7 +12,7 @@ export const getDetails = {
   ],
   inputsInline: true,
   output: 'EntryDetails',
-  colour: 160,
+  colour,
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
 };

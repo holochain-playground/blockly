@@ -1,4 +1,4 @@
-import { PUB_KEY } from '../types';
+import { PUB_KEY, colour } from '../types';
 
 export const agentInfo = {
   type: 'agent_info.agent_latest_pubkey',
@@ -6,7 +6,7 @@ export const agentInfo = {
   args0: [],
   inputsInline: true,
   output: PUB_KEY,
-  colour: 160,
+  colour,
   tooltip: 'Returns number of letters in the provided text.',
   helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
 };
