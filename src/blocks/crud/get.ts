@@ -26,7 +26,7 @@ export function defineGet(blockly: any) {
       blockly.JavaScript.ORDER_ADDITION
     );
     if (!hash) throw new Error(`"get": hash is empty`);
-
-    return [`(await hdk.get(hash))`, blockly.JavaScript.ORDER_FUNCTION_CALL];
+    console.log(`(await hdk.get(${hash}))`);
+    return [`(await hdk.get(${hash}))`, blockly.JavaScript.ORDER_FUNCTION_CALL];
   };
 }

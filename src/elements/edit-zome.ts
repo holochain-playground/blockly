@@ -54,7 +54,7 @@ export class EditZome extends PlaygroundMixin(LitElement) {
       (changedValues.has('zome') || changedValues.has('editing')) &&
       this.zome
     ) {
-      this.setupBlockly();
+      setTimeout(() => this.setupBlockly());
     }
   }
 
@@ -66,6 +66,12 @@ export class EditZome extends PlaygroundMixin(LitElement) {
 
   setupBlockly() {
     if (this._workspace) this._workspace.dispose();
+
+    if (this.zome) {
+      this.zome.entry_defs.forEach(entryDef =>
+        defineNewEntry(Blockly, entryDef.id)
+      );
+    }
     this._workspace = Blockly.inject(this.blocklyArea, {
       toolbox: this.editing ? toolbox : null,
       shadowRoot: this.shadowRoot,
@@ -81,40 +87,43 @@ export class EditZome extends PlaygroundMixin(LitElement) {
         if (this._checkTimeout) clearTimeout(this._checkTimeout);
 
         this._checkTimeout = setTimeout(async () => {
-          try {
-            const zome = await this.getZome();
-            const category = (this._workspace as any).toolbox_
-              .getToolboxItems()[0]
-              .getChildToolboxItems()[0];
+          if (this.editing) {
+            try {
+              const zome = await this.getZome();
+              const category = (this._workspace as any).toolbox_
+                .getToolboxItems()[0]
+                .getChildToolboxItems()[0];
 
-            const blocks = zome.entry_defs.map(entryDef =>
-              defineNewEntry(Blockly, entryDef.id)
-            );
+              const blocks = zome.entry_defs.map(entryDef =>
+                defineNewEntry(Blockly, entryDef.id)
+              );
 
-            category.updateFlyoutContents({
-              kind: 'category',
-              name: 'Entries',
-              contents: blocks,
-            });
+              category.updateFlyoutContents({
+                kind: 'category',
+                name: 'Entries',
+                contents: blocks,
+              });
 
-            this.dispatchEvent(
-              new CustomEvent('zome-edited', {
-                detail: {
-                  valid: true,
-                  zome,
-                },
-              })
-            );
-          } catch (e) {
-            console.error(e);
-            this.dispatchEvent(
-              new CustomEvent('zome-edited', {
-                detail: {
-                  valid: false,
-                },
-              })
-            );
+              this.dispatchEvent(
+                new CustomEvent('zome-edited', {
+                  detail: {
+                    valid: true,
+                    zome,
+                  },
+                })
+              );
+            } catch (e) {
+              console.error(e);
+              this.dispatchEvent(
+                new CustomEvent('zome-edited', {
+                  detail: {
+                    valid: false,
+                  },
+                })
+              );
+            }
           }
+
           clearTimeout(this._checkTimeout);
         }, CHECK_DEBOUNCE);
       });

@@ -28,7 +28,7 @@ export function defineGetDetails(blockly: any) {
     if (!hash) throw new Error(`"get_details": hash is empty`);
 
     return [
-      `(await hdk.get_details(hash))`,
+      `(await hdk.get_details(${hash}))`,
       blockly.JavaScript.ORDER_FUNCTION_CALL,
     ];
   };

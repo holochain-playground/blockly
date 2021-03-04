@@ -7,13 +7,14 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "scripts": {
-    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
-    "build": "tsc",
-    "prepublish": "tsc",
+    "start": "concurrently -k \"npm:build-watch\" \"wds -c web-dev-server.config.mjs\"",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "build-watch": "rimraf dist && rollup -w -c rollup.config.js",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
     "storybook": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
-    "storybook:build": "tsc && build-storybook"
+    "storybook:build": "tsc && build-storybook",
+    "publish-to-branch": "npm run build && gh-pages -d . -b build"
   },
   "dependencies": {
     "@holochain-open-dev/core-types": "git+https://github.com/holochain-open-dev/core-types.git#build",
@@ -28,7 +29,9 @@
   "devDependencies": {
     "@open-wc/eslint-config": "^4.2.0",
     "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
     "@rollup/plugin-replace": "^2.3.4",
+    "@rollup/plugin-typescript": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "@web/dev-server": "^0.1.8",

@@ -151,7 +151,6 @@ export function defineEntryDefs(blockly: any) {
   blockly.JavaScript.entry_def = function (block: any) {
     const entry_def_id = block.getFieldValue('ENTRY_DEF_ID');
     const entryDefPublic = block.getFieldValue('PUBLIC');
-    console.log('hey');
 
     return [
       `{id: "${entry_def_id}", visibility: "${

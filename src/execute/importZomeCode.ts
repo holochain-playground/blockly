@@ -16,17 +16,16 @@ function esm(templateStrings: any, ...substitutions: any) {
 
 export async function importZomeFromCode(code: string) {
   // eslint-ignore-line
-  const functionsRegex = /function (\w*)\(([A-Za-z0-9_,\ ]*)\) \{/;
+  const functionsRegex = /function (\w*)\(([A-Za-z0-9_,\ ]*)\) \{/g;
   const text = code.replace(
     functionsRegex,
-    'export const $1 = (hdk) => async ($2) => {'
+    'export const $1 = (hdk) => async ({ $2 }) => {'
   );
   const functionArgs = code.split(functionsRegex);
-  console.log(code, text);
 
   // prettier-ignore
   const module = await import(esm`${text}`);
-
+  console.log(text);
   const entry_defs: Array<any> = module.entry_defs;
 
   if (!entry_defs)

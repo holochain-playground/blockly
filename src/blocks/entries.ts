@@ -8,13 +8,14 @@ export function defineNewEntry(blockly: any, entryDefId: string) {
       message0: `new ${entryDefId} %1`,
       args0: [
         {
-          type: 'field_input',
+          type: 'input_value',
           name: 'CONTENT',
           check: 'String',
           align: 'right',
         },
       ],
       output: ENTRY,
+      inputsInline: true,
       colour,
       tooltip: 'Creates a new entry with the given entry_def_id and content',
       helpUrl: 'http://www.w3schools.com/jsref/jsref_length_string.asp',
@@ -22,10 +23,14 @@ export function defineNewEntry(blockly: any, entryDefId: string) {
 
     blockly.defineBlocksWithJsonArray([entryBlock]);
     blockly.JavaScript[type] = function (block: any) {
-      const content = block.getFieldValue('CONTENT');
+      const content = blockly.JavaScript.valueToCode(
+        block,
+        'CONTENT',
+        blockly.JavaScript.ORDER_ADDITION
+      );
 
       return [
-        `{content: "${content}", entry_def_id: "${entryDefId}"}`,
+        `{content: ${content}, entry_def_id: "${entryDefId}"}`,
         blockly.JavaScript.ORDER_FUNCTION_CALL,
       ];
     };

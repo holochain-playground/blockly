@@ -23,7 +23,7 @@ export const getLinks = {
 
 export function defineGetLinks(blockly: any) {
   blockly.defineBlocksWithJsonArray([getLinks]);
-  blockly.JavaScript.get = function (block: any) {
+  blockly.JavaScript.get_links = function (block: any) {
     const hash = blockly.JavaScript.valueToCode(
       block,
       'BASE',

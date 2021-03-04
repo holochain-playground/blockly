@@ -17,16 +17,20 @@
   </head>
   <body>
     <holochain-playground-container id="container">
-      <div style="display: flex; flex: 1; flex-direction: column;">
+      <div style="display: flex; flex: 1; flex-direction: column">
         <dna-code id="demo"></dna-code>
-        <call-zome-fns style="height: 200px;"></call-zome-fns>
-        <entry-graph style="height: 200px;"></entry-graph>
+        <call-zome-fns style="height: 200px"></call-zome-fns>
+        <entry-graph style="height: 200px"></entry-graph>
       </div>
     </holochain-playground-container>
 
     <script type="module">
-      import { HolochainPlaygroundContainer, CallZomeFns, EntryGraph } from '@holochain-playground/elements';
-      import { DnaCode } from '../dist';
+      import {
+        HolochainPlaygroundContainer,
+        CallZomeFns,
+        EntryGraph,
+      } from '@holochain-playground/elements';
+      import { DnaCode, demoBlocklyDna } from '../dist';
 
       customElements.define(
         'holochain-playground-container',
@@ -36,11 +40,14 @@
       customElements.define('call-zome-fns', CallZomeFns);
       customElements.define('entry-graph', EntryGraph);
 
-      document.getElementById('container').addEventListener('ready', e => {
+      const c = document.getElementById('container');
+      c.simulatedDnaTemplate = demoBlocklyDna;
+
+      c.addEventListener('ready', e => {
         const conductor = e.detail.conductors[0];
         const cell = conductor.getAllCells()[0];
         e.target.activeAgentPubKey = cell.cellId[1];
-      })
+      });
     </script>
   </body>
 </html>

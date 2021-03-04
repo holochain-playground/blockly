@@ -28,6 +28,14 @@ export const toolbox = {
             },
             {
               kind: 'block',
+              type: 'update_entry',
+            },
+            {
+              kind: 'block',
+              type: 'delete_entry',
+            },
+            {
+              kind: 'block',
               type: 'hash_entry',
             },
           ],

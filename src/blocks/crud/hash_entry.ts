@@ -27,7 +27,7 @@ export function defineHashEntry(blockly: any) {
     );
 
     if (!entry) throw new Error(`"hash_entry": entry is empty`);
-
+    console.log(`(await hdk.hash_entry(${entry}))`);
     return [
       `(await hdk.hash_entry(${entry}))`,
       blockly.JavaScript.ORDER_FUNCTION_CALL,
