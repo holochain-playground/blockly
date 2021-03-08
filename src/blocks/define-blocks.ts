@@ -7,6 +7,7 @@ import { defineGetDetails } from './crud/get_details';
 import { defineGetLinks } from './links/get_links';
 import { defineEntryDefs } from './callbacks/entry_defs';
 import { defineUpdateEntry } from './crud/update_entry';
+import { defineDeleteEntry } from './crud/delete_entry';
 
 export function defineBlocks(blockly: any) {
   defineCreateEntry(blockly);
@@ -18,5 +19,5 @@ export function defineBlocks(blockly: any) {
   defineGetLinks(blockly);
   defineEntryDefs(blockly);
   defineUpdateEntry(blockly);
-  defineCreateEntry(blockly);
+  defineDeleteEntry(blockly);
 }

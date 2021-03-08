@@ -3,6 +3,7 @@ import merge from 'deepmerge';
 import { createSpaConfig } from '@open-wc/building-rollup';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import json from '@rollup/plugin-json';
 
 // use createBasicConfig to do regular JS to JS bundling
 // import { createBasicConfig } from '@open-wc/building-rollup';
@@ -17,6 +18,11 @@ const baseConfig = createSpaConfig({
 
   // development mode creates a non-minified build for debugging or development
   developmentMode: process.env.ROLLUP_WATCH === 'true',
+  nodeResolve: {
+    preferBuiltins: false,
+    browser: true,
+    mainFields: ['browser', 'module', 'main'],
+  },
 
   // set to true to inject the service worker registration into your index.html
   injectServiceWorker: false,
@@ -31,9 +37,10 @@ export default merge(baseConfig, {
   // optionally set a HTML template manually
   // input: './app.js',
   plugins: [
+    json(),
     typescript(),
     commonjs({
-      include: ['node_modules/blockly/**/*', 'node_modules/blakejs/**/*'],
-    }),
+      include: /node_modules/
+    })
   ],
 });
