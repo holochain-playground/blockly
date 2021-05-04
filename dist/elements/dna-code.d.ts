@@ -1,3 +1,4 @@
+import { PropertyValues } from 'lit';
 import { PlaygroundElement, CopyableHash } from '@holochain-playground/elements';
 import 'blockly/javascript';
 import { SimulatedDna, SimulatedZome } from '@holochain-playground/core';
@@ -38,6 +39,7 @@ export declare class DnaCode extends PlaygroundElement {
     addZome(): void;
     getEditingDna(): SimulatedDna | undefined;
     removeEditingZome(index: number): void;
+    updated(changedValues: PropertyValues): void;
     compileDna(): Promise<void>;
     cancelEdit(): Promise<void>;
     renderContent(): import("lit-html").TemplateResult<1>;

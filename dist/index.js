@@ -2861,7 +2861,7 @@ const sharedStyles = css `
   }
 
   .placeholder {
-    color: lightgrey;
+    color: rgba(0, 0, 0, 0.6);
   }
 
   .vertical-divider {
@@ -3916,6 +3916,12 @@ class DnaCode extends PlaygroundElement {
                 this._selectedZomeIndex = 0;
             }
             this.requestUpdate();
+        }
+    }
+    updated(changedValues) {
+        super.updated(changedValues);
+        if (changedValues.has('activeDna') && this.activeDna) {
+            this.showZome(0);
         }
     }
     async compileDna() {

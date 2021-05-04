@@ -1,4 +1,4 @@
-import { html, css } from 'lit';
+import { html, css, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import {
   PlaygroundElement,
@@ -157,6 +157,14 @@ export class DnaCode extends PlaygroundElement {
       }
 
       this.requestUpdate();
+    }
+  }
+
+  updated(changedValues: PropertyValues) {
+    super.updated(changedValues);
+
+    if (changedValues.has('activeDna') && this.activeDna) {
+      this.showZome(0);
     }
   }
 

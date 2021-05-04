@@ -24,6 +24,7 @@
         <div style="display: flex; flex: 1; flex-direction: row">
           <dna-code id="demo" class="block" style="flex: 1"></dna-code>
           <div style="display: flex; flex-basis: 400px; flex-direction: column">
+            <select-active-dna style="flex: 1;"></select-active-dna>
             <dht-cells class="block" style="flex: 1"></dht-cells>
           </div>
         </div>
@@ -43,6 +44,7 @@
         HolochainPlaygroundContainer,
         CallZomeFns,
         DhtCells,
+        SelectActiveDna,
       } from '@holochain-playground/elements';
       import { DnaCode, demoHapp } from './src/index';
 
@@ -53,7 +55,8 @@
       customElements.define('dna-code', DnaCode);
       customElements.define('dht-cells', DhtCells);
       customElements.define('call-zome-fns', CallZomeFns);
-      
+      customElements.define('select-active-dna', SelectActiveDna);
+
       const c = document.getElementById('container');
       c.simulatedHapp = demoHapp;
       c.numberOfSimulatedConductors = 6;

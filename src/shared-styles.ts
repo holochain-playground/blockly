@@ -15,7 +15,7 @@ export const sharedStyles = css`
   }
 
   .placeholder {
-    color: lightgrey;
+    color: rgba(0, 0, 0, 0.6);
   }
 
   .vertical-divider {
