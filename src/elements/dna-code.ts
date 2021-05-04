@@ -1,5 +1,9 @@
-import { html, css, property } from 'lit-element';
-import { PlaygroundElement } from '@holochain-playground/elements';
+import { html, css } from 'lit';
+import { property } from 'lit/decorators.js';
+import {
+  PlaygroundElement,
+  CopyableHash,
+} from '@holochain-playground/elements';
 import 'blockly/javascript';
 import { SimulatedDna, SimulatedZome } from '@holochain-playground/core';
 import { TabBar } from 'scoped-material-components/mwc-tab-bar';
@@ -83,6 +87,7 @@ export class DnaCode extends PlaygroundElement {
         name: `sample${this._newZomeCount}`,
         entry_defs: [],
         zome_functions: {},
+        validation_functions: {},
         blocklyCode:
           '<xml xmlns="https://developers.google.com/blockly/xml"><block type="entry_defs" id="a{AP^:MzvuAQf6=jI~[2" x="123" y="58"><mutation xmlns="http://www.w3.org/1999/xhtml" items="1"></mutation><value name="ADD0"><block type="entry_def" id="$SQ6P6OQ#1/hfOd4TA=@"><field name="ENTRY_DEF_ID">sample_entry</field><field name="PUBLIC">TRUE</field></block></value></block><block type="procedures_defnoreturn" id="D}syd|^_`$9k%uwyIdSn" x="164" y="126"><field name="NAME">sample function</field><comment pinned="false" h="80" w="160">Describe this function...</comment><statement name="STACK"><block type="create_entry" id="YbSju3KGV0}rR_PP}]b2"><value name="ENTRY"><block type="new sample_entry" id="tQuMSJo,+,v1tN,aAx9z"><field name="CONTENT">Hello world!</field></block></value></block></statement></block></xml>',
       },
@@ -138,8 +143,8 @@ export class DnaCode extends PlaygroundElement {
   getEditingDna(): SimulatedDna | undefined {
     if (!this._editingZomes) return undefined;
     return {
-      properties: null,
-      uuid: '',
+      properties: {},
+      uid: '',
       zomes: this._editingZomes.map(e => e.zome),
     };
   }
@@ -157,19 +162,15 @@ export class DnaCode extends PlaygroundElement {
 
   async compileDna() {
     if (this._editingZomes) {
-      const promises = this.conductors.map(async conductor => {
-        const hash = await conductor.registerDna(
-          this.getEditingDna() as SimulatedDna
-        );
-        return conductor.installApp(hash, null, null, '');
-      });
-
-      const cells = await Promise.all(promises);
-
-      this.updatePlayground({
-        activeDna: cells[0].dnaHash,
-        activeAgentPubKey: cells[0].agentPubKey,
-      });
+      this.dispatchEvent(
+        new CustomEvent('dna-compiled', {
+          detail: {
+            dna: this.getEditingDna(),
+          },
+          bubbles: true,
+          composed: true,
+        })
+      );
 
       this._editingZomes = undefined;
       setTimeout(() => {
@@ -268,9 +269,15 @@ export class DnaCode extends PlaygroundElement {
           <span style="font-size: 20px; margin: 16px;"
             >Dna
             Code${this.activeDna
-              ? html`<span style="opacity: 0.7"
-                  >, for dna ${this.activeDna}
-                </span>`
+              ? html`
+                  <span class="placeholder row">
+                    , for Dna
+                    <copyable-hash
+                      .hash=${this.activeDna}
+                      style="margin-left: 8px;"
+                    ></copyable-hash>
+                  </span>
+                `
               : html``}</span
           >
           ${this.renderContent()}
@@ -279,14 +286,13 @@ export class DnaCode extends PlaygroundElement {
     `;
   }
 
-  static get scopedElements() {
-    return {
-      'edit-zome': EditZome,
-      'mwc-tab-bar': TabBar,
-      'mwc-tab': Tab,
-      'mwc-button': Button,
-      'mwc-icon-button': IconButton,
-      'mwc-card': Card,
-    };
-  }
+  static elementDefinitions = {
+    'edit-zome': EditZome,
+    'copyable-hash': CopyableHash,
+    'mwc-tab-bar': TabBar,
+    'mwc-tab': Tab,
+    'mwc-button': Button,
+    'mwc-icon-button': IconButton,
+    'mwc-card': Card,
+  };
 }

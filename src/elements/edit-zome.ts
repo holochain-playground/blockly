@@ -1,16 +1,11 @@
-import {
-  html,
-  css,
-  LitElement,
-  property,
-  query,
-  PropertyValues,
-} from 'lit-element';
-import { PlaygroundMixin } from '@holochain-playground/elements';
+import { html, css, PropertyValues } from 'lit';
+import { property, query } from 'lit/decorators.js';
+
+import { PlaygroundElement } from '@holochain-playground/elements';
 import { SimulatedZome } from '@holochain-playground/core';
 import Blockly, { Workspace } from 'blockly';
 import 'blockly/javascript';
-import { styleMap } from 'lit-html/directives/style-map';
+import { styleMap } from 'lit/directives/style-map.js';
 
 import { sharedStyles } from '../shared-styles';
 import { defineBlocks } from '../blocks/define-blocks';
@@ -20,7 +15,7 @@ import { defineNewEntry } from '../blocks/entries';
 
 const CHECK_DEBOUNCE = 500;
 
-export class EditZome extends PlaygroundMixin(LitElement) {
+export class EditZome extends PlaygroundElement {
   @property({ type: Object })
   zome!: SimulatedZome;
 

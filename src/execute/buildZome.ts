@@ -12,11 +12,12 @@ export async function buildZome(
   const blocklyCode = blockly.Xml.domToText(
     blockly.Xml.workspaceToDom(blocklyWorkspace)
   );
-  console.log(blocklyCode);
+
   return {
     name: zomeName,
     entry_defs,
     zome_functions,
+    validation_functions: {},
     blocklyCode,
   };
 }

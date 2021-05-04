@@ -25,7 +25,7 @@ export async function importZomeFromCode(code: string) {
 
   // prettier-ignore
   const module = await import(esm`${text}`);
-  console.log(text);
+
   const entry_defs: Array<any> = module.entry_defs;
 
   if (!entry_defs)
