@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        background: #fafafa;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .block {
+        margin: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <holochain-playground-container id="container">
+      <div style="display: flex; flex: 1; flex-direction: column">
+        <div style="display: flex; flex: 1; flex-direction: row">
+          <dna-code id="demo" class="block" style="flex: 1"></dna-code>
+          <div style="display: flex; flex-basis: 400px; flex-direction: column">
+            <dht-cells class="block" style="flex: 1"></dht-cells>
+          </div>
+        </div>
+        <div style="display: flex; flex-basis: 400px; flex-direction: row">
+          <call-zome-fns
+            style="flex-basis: 400px"
+            class="block"
+          ></call-zome-fns>
+          <entry-graph style="flex: 1" class="block"></entry-graph>
+        </div>
+      </div>
+    </holochain-playground-container>
+
+    <script type="module">
+      import '@webcomponents/scoped-custom-element-registry';
+      import {
+        HolochainPlaygroundContainer,
+        CallZomeFns,
+        DhtCells,
+        SelectActiveDna,
+        EntryGraph,
+      } from '@holochain-playground/elements';
+      import { DnaCode, demoHapp } from './src/index';
+
+      customElements.define(
+        'holochain-playground-container',
+        HolochainPlaygroundContainer
+      );
+      customElements.define('dna-code', DnaCode);
+      customElements.define('dht-cells', DhtCells);
+      customElements.define('call-zome-fns', CallZomeFns);
+      customElements.define('conductor-admin', ConductorAdmin);
+
+      const c = document.getElementById('container');
+      c.simulatedHapp = demoHapp;
+      c.numberOfSimulatedConductors = 6;
+
+      c.addEventListener('ready', e => {
+        const conductor = e.detail.conductors[0];
+        const cell = conductor.getAllCells()[0];
+        e.target.activeAgentPubKey = cell.cellId[1];
+      });
+    </script>
+  </body>
+</html>
