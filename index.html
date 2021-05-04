@@ -43,8 +43,6 @@
         HolochainPlaygroundContainer,
         CallZomeFns,
         DhtCells,
-        SelectActiveDna,
-        EntryGraph,
       } from '@holochain-playground/elements';
       import { DnaCode, demoHapp } from './src/index';
 
@@ -55,8 +53,7 @@
       customElements.define('dna-code', DnaCode);
       customElements.define('dht-cells', DhtCells);
       customElements.define('call-zome-fns', CallZomeFns);
-      customElements.define('conductor-admin', ConductorAdmin);
-
+      
       const c = document.getElementById('container');
       c.simulatedHapp = demoHapp;
       c.numberOfSimulatedConductors = 6;

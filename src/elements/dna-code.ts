@@ -1,6 +1,9 @@
 import { html, css } from 'lit';
 import { property } from 'lit/decorators.js';
-import { PlaygroundElement, CopyableHash } from '@holochain-playground/elements';
+import {
+  PlaygroundElement,
+  CopyableHash,
+} from '@holochain-playground/elements';
 import 'blockly/javascript';
 import { SimulatedDna, SimulatedZome } from '@holochain-playground/core';
 import { TabBar } from 'scoped-material-components/mwc-tab-bar';
@@ -263,7 +266,7 @@ export class DnaCode extends PlaygroundElement {
     return html`
       <mwc-card style="width: auto; flex: 1">
         <div class="column" style="flex: 1;">
-          <span style="font-size: 20px; margin: 16px;"
+          <span style="font-size: 20px; margin: 16px;" class="row"
             >Dna
             Code${this.activeDna
               ? html`

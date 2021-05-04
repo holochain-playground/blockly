@@ -1,4 +1,4 @@
-import { html, css, LitElement, PropertyValues } from 'lit';
+import { html, css, PropertyValues } from 'lit';
 import { property, query } from 'lit/decorators.js';
 
 import { PlaygroundElement } from '@holochain-playground/elements';

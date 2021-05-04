@@ -1,4 +1,4 @@
-import { css } from 'lit-element';
+import { css } from 'lit';
 
 export const sharedStyles = css`
   .column {
@@ -12,6 +12,10 @@ export const sharedStyles = css`
   .center-content {
     align-items: center;
     justify-content: center;
+  }
+
+  .placeholder {
+    color: lightgrey;
   }
 
   .vertical-divider {
