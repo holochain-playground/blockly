@@ -108,7 +108,6 @@ export class EditZome extends PlaygroundElement {
                 })
               );
             } catch (e) {
-              console.error(e);
               this.dispatchEvent(
                 new CustomEvent('zome-edited', {
                   detail: {
