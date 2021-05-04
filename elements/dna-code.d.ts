@@ -17,7 +17,7 @@ export declare class DnaCode extends PlaygroundElement {
     _invalid: boolean;
     _newZomeCount: number;
     getActiveDna(): SimulatedDna | undefined;
-    static styles: import("lit-element").CSSResult[];
+    static styles: import("lit").CSSResultGroup[];
     get _editing(): boolean;
     get _editZomeEl(): EditZome;
     isDnaValid(): boolean | undefined;
@@ -28,6 +28,7 @@ export declare class DnaCode extends PlaygroundElement {
             name: string;
             entry_defs: never[];
             zome_functions: {};
+            validation_functions: {};
             blocklyCode: string;
         };
     };
@@ -39,9 +40,9 @@ export declare class DnaCode extends PlaygroundElement {
     removeEditingZome(index: number): void;
     compileDna(): Promise<void>;
     cancelEdit(): Promise<void>;
-    renderContent(): import("lit-element").TemplateResult;
-    render(): import("lit-element").TemplateResult;
-    static get scopedElements(): {
+    renderContent(): import("lit-html").TemplateResult<1>;
+    render(): import("lit-html").TemplateResult<1>;
+    static elementDefinitions: {
         'edit-zome': typeof EditZome;
         'mwc-tab-bar': typeof TabBar;
         'mwc-tab': typeof Tab;
