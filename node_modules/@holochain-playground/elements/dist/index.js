@@ -96519,5 +96519,5 @@ SelectActiveDna.elementDefinitions = {
     'mwc-card': Card,
 };
 
-export { CallZomeFns, CellsController, ConductorAdmin, DhtCells, DhtShard, DhtStats, EntryContents, EntryGraph, HolochainPlaygroundContainer, PlaygroundElement, RunSteps, SelectActiveDna, SourceChain, ZomeFnsResults };
+export { CallFns, CallZomeFns, CellTasks, CellsController, ConductorAdmin, CopyableHash, DhtCells, DhtShard, DhtStats, EntryContents, EntryGraph, HelpButton, HolochainPlaygroundContainer, PlaygroundElement, RunSteps, SelectActiveDna, SourceChain, ZomeFnsResults };
 //# sourceMappingURL=index.js.map

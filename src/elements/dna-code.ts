@@ -1,6 +1,6 @@
 import { html, css } from 'lit';
 import { property } from 'lit/decorators.js';
-import { PlaygroundElement } from '@holochain-playground/elements';
+import { PlaygroundElement, CopyableHash } from '@holochain-playground/elements';
 import 'blockly/javascript';
 import { SimulatedDna, SimulatedZome } from '@holochain-playground/core';
 import { TabBar } from 'scoped-material-components/mwc-tab-bar';
@@ -266,9 +266,15 @@ export class DnaCode extends PlaygroundElement {
           <span style="font-size: 20px; margin: 16px;"
             >Dna
             Code${this.activeDna
-              ? html`<span style="opacity: 0.7"
-                  >, for dna ${this.activeDna}
-                </span>`
+              ? html`
+                  <span class="placeholder row">
+                    , for Dna
+                    <copyable-hash
+                      .hash=${this.activeDna}
+                      style="margin-left: 8px;"
+                    ></copyable-hash>
+                  </span>
+                `
               : html``}</span
           >
           ${this.renderContent()}
@@ -279,6 +285,7 @@ export class DnaCode extends PlaygroundElement {
 
   static elementDefinitions = {
     'edit-zome': EditZome,
+    'copyable-hash': CopyableHash,
     'mwc-tab-bar': TabBar,
     'mwc-tab': Tab,
     'mwc-button': Button,

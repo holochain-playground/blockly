@@ -5,7 +5,7 @@ import { PlaygroundElement } from '@holochain-playground/elements';
 import { SimulatedZome } from '@holochain-playground/core';
 import Blockly, { Workspace } from 'blockly';
 import 'blockly/javascript';
-import { styleMap } from 'lit-html/directives/style-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 
 import { sharedStyles } from '../shared-styles';
 import { defineBlocks } from '../blocks/define-blocks';

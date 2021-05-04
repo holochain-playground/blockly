@@ -13,3 +13,7 @@ export * from './elements/entry-contents';
 export * from './elements/entry-graph';
 export * from './elements/source-chain';
 export * from './elements/select-active-dna';
+export * from './elements/helpers/call-functions';
+export * from './elements/helpers/copyable-hash';
+export * from './elements/helpers/cell-tasks';
+export * from './elements/helpers/help-button';

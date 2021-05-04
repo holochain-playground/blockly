@@ -1,4 +1,4 @@
-import { PlaygroundElement } from '@holochain-playground/elements';
+import { PlaygroundElement, CopyableHash } from '@holochain-playground/elements';
 import 'blockly/javascript';
 import { SimulatedDna, SimulatedZome } from '@holochain-playground/core';
 import { TabBar } from 'scoped-material-components/mwc-tab-bar';
@@ -44,6 +44,7 @@ export declare class DnaCode extends PlaygroundElement {
     render(): import("lit-html").TemplateResult<1>;
     static elementDefinitions: {
         'edit-zome': typeof EditZome;
+        'copyable-hash': typeof CopyableHash;
         'mwc-tab-bar': typeof TabBar;
         'mwc-tab': typeof Tab;
         'mwc-button': typeof Button;

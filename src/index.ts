@@ -4,7 +4,7 @@ export { EditZome } from './elements/edit-zome';
 export { DnaCode } from './elements/dna-code';
 
 export const demoHapp: SimulatedHappBundle = {
-  name: 'hi',
+  name: 'blockly-happ',
   description: '',
   slots: {
     default: {

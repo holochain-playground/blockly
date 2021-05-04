@@ -26,7 +26,6 @@ export default {
   external: [
     ...Object.keys(pkg.dependencies).filter(key => !key.includes('blockly')),
     /scoped-material-components/,
-    /lit-html/,
     'lodash-es',
   ],
   plugins,
