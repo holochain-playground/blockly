@@ -14,6 +14,10 @@ export const sharedStyles = css`
     justify-content: center;
   }
 
+  .placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
   .vertical-divider {
     background-color: grey;
     width: 1px;

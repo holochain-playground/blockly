@@ -1,4 +1,4 @@
-import { html, css } from 'lit';
+import { html, css, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import {
   PlaygroundElement,
@@ -6,11 +6,15 @@ import {
 } from '@holochain-playground/elements';
 import 'blockly/javascript';
 import { SimulatedDna, SimulatedZome } from '@holochain-playground/core';
-import { TabBar } from 'scoped-material-components/mwc-tab-bar';
-import { Tab } from 'scoped-material-components/mwc-tab';
-import { Button } from 'scoped-material-components/mwc-button';
-import { Card } from 'scoped-material-components/mwc-card';
-import { IconButton } from 'scoped-material-components/mwc-icon-button';
+
+import {
+  TabBar,
+  Tab,
+  Button,
+  Card,
+  IconButton,
+} from '@scoped-elements/material-web';
+
 import { EditZome } from './edit-zome';
 import { sharedStyles } from '../shared-styles';
 
@@ -160,6 +164,14 @@ export class DnaCode extends PlaygroundElement {
     }
   }
 
+  updated(changedValues: PropertyValues) {
+    super.updated(changedValues);
+
+    if (changedValues.has('activeDna') && this.activeDna) {
+      this.showZome(0);
+    }
+  }
+
   async compileDna() {
     if (this._editingZomes) {
       this.dispatchEvent(
@@ -266,7 +278,7 @@ export class DnaCode extends PlaygroundElement {
     return html`
       <mwc-card style="width: auto; flex: 1">
         <div class="column" style="flex: 1;">
-          <span style="font-size: 20px; margin: 16px;"
+          <span style="font-size: 20px; margin: 16px;" class="row"
             >Dna
             Code${this.activeDna
               ? html`

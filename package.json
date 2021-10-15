@@ -17,13 +17,12 @@
     "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
   },
   "dependencies": {
-    "@holochain-open-dev/core-types": "git+https://github.com/holochain-open-dev/core-types.git#build",
+    "@holochain-open-dev/core-types": "^0.1.1",
     "@holochain-playground/core": "github:holochain-playground/core#build",
-    "@holochain-playground/elements": "git+https://github.com/holochain-playground/elements.git#build",
-    "@webcomponents/scoped-custom-element-registry": "0.0.1",
+    "@holochain-playground/elements": "github:holochain-playground/elements#build",
     "blockly": "git+https://github.com/guillemcordoba/blockly.git#build",
-    "lit": "^2.0.0-rc.1",
-    "scoped-material-components": "0.1.6"
+    "lit": "^2.0.2",
+    "@scoped-elements/material-web": "0.0.13"
   },
   "devDependencies": {
     "@open-wc/building-rollup": "^1.9.4",
